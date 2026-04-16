@@ -19,6 +19,77 @@ function registerLoggedUser($user){
     $_SESSION["nome"] = $user["nome"];
 }
 
+// ===== FUNZIONI NUOVE PER ERASMUS =====
+
+function isUserLoggedInErasmus(){
+    return !empty($_SESSION['id_utente']);
+}
+
+function registerLoggedUserErasmus($user){
+    $_SESSION['id_utente'] = $user['id_utente'];
+    $_SESSION['nome'] = $user['nome'];
+    $_SESSION['cognome'] = $user['cognome'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['ruolo'] = $user['ruolo'];
+    $_SESSION['tipo_utente'] = $user['tipo_utente'] ?? null;
+}
+
+function logoutUserErasmus(){
+    unset($_SESSION['id_utente']);
+    unset($_SESSION['nome']);
+    unset($_SESSION['cognome']);
+    unset($_SESSION['email']);
+    unset($_SESSION['ruolo']);
+    unset($_SESSION['tipo_utente']);
+}
+
+function isAdmin(){
+    return isset($_SESSION['ruolo']) && $_SESSION['ruolo'] === 'admin';
+}
+
+function isStudent(){
+    return isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'studente';
+}
+
+function isTeacher(){
+    return isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'professore';
+}
+
+function getFullName(){
+    return (isset($_SESSION['nome']) && isset($_SESSION['cognome'])) ? 
+           $_SESSION['nome'] . ' ' . $_SESSION['cognome'] : 'Utente';
+}
+
+function redirectIfNotLoggedIn(){
+    if(!isUserLoggedInErasmus()){
+        header("Location: login.php");
+        exit();
+    }
+}
+
+function redirectIfNotAdmin(){
+    if(!isAdmin()){
+        header("Location: index.php");
+        exit();
+    }
+}
+
+function sanitizeInput($input){
+    return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+}
+
+function validateEmail($email){
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+function hashPassword($password){
+    return password_hash($password, PASSWORD_DEFAULT);
+}
+
+function verifyPassword($password, $hash){
+    return password_verify($password, $hash);
+}
+
 function getEmptyArticle(){
     return array("idarticolo" => "", "titoloarticolo" => "", "imgarticolo" => "", "testoarticolo" => "", "anteprimaarticolo" => "", "categorie" => array());
 }
