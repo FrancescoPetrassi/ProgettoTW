@@ -48,7 +48,7 @@ function logoutUser() {
     })
     .then(response => response.json())
     .then(data => {
-        window.location.href = 'index.php';
+        window.location.href = 'index-erasmus.php';
     })
     .catch(error => {
         console.error('Errore nel logout:', error);

@@ -68,6 +68,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
         }
     }
+
+    // GET con filtri - Ricerca filtrata
+    else if (isset($_GET['action']) && $_GET['action'] === 'search') {
+        try {
+            $mobilita = $dbh->getMobilita();
+            $filtered = array();
+
+            // Applica filtri lato server come backup
+            foreach ($mobilita as $m) {
+                $include = true;
+
+                // Filtro ricerca testuale
+                if (isset($_GET['search']) && !empty($_GET['search'])) {
+                    $search = strtolower(sanitizeInput($_GET['search']));
+                    $text = strtolower($m['titolo'] . ' ' . $m['descrizione'] . ' ' . $m['universita_nome'] . ' ' . $m['paese']);
+                    if (strpos($text, $search) === false) {
+                        $include = false;
+                    }
+                }
+
+                // Filtro tipo
+                if (isset($_GET['tipo']) && !empty($_GET['tipo']) && $_GET['tipo'] !== 'tutti') {
+                    $tipo = sanitizeInput($_GET['tipo']);
+                    if ($tipo !== 'entrambi' && $m['tipo_mobilita'] !== $tipo && $m['tipo_mobilita'] !== 'entrambi') {
+                        $include = false;
+                    }
+                }
+
+                // Filtro paese
+                if (isset($_GET['paese']) && !empty($_GET['paese'])) {
+                    $paese = sanitizeInput($_GET['paese']);
+                    if ($m['paese'] !== $paese) {
+                        $include = false;
+                    }
+                }
+
+                // Altri filtri possono essere aggiunti qui...
+
+                if ($include) {
+                    $filtered[] = $m;
+                }
+            }
+
+            $result["mobilita"] = $filtered;
+            $result["success"] = true;
+        } catch (Exception $e) {
+            $result["errore"] = "Errore nella ricerca";
+        }
+    }
 }
 
 // POST - Crea, aggiorna, elimina mobilità

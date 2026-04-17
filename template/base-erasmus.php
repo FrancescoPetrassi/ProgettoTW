@@ -21,16 +21,16 @@
     <!-- Header -->
     <header class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top" role="banner">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="index.php">
+            <a class="navbar-brand fw-bold" href="index-erasmus.php">
                 <i class="fas fa-globe"></i> Erasmus Mobility Manager
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Attiva/disattiva navigazione">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="#navbarNav" aria-expanded="false" aria-label="Attiva/disattiva navigazione">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <nav class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php" aria-current="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'page' : 'false'; ?>">
+                        <a class="nav-link" href="index-erasmus.php" aria-current="<?php echo basename($_SERVER['PHP_SELF']) == 'index-erasmus.php' ? 'page' : 'false'; ?>">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>

@@ -62,14 +62,14 @@ function getFullName(){
 
 function redirectIfNotLoggedIn(){
     if(!isUserLoggedInErasmus()){
-        header("Location: login.php");
+        header("Location: login-erasmus.php");
         exit();
     }
 }
 
 function redirectIfNotAdmin(){
     if(!isAdmin()){
-        header("Location: index.php");
+        header("Location: index-erasmus.php");
         exit();
     }
 }
