@@ -34,7 +34,11 @@ function showAlert(message, type = 'info', duration = 5000) {
 /**
  * Effettua il logout dell'utente
  */
-function logoutUser() {
+function logoutUser(event) {
+    if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+    }
+
     if (!confirm('Sei sicuro di voler fare il logout?')) {
         return;
     }

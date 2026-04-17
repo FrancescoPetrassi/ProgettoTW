@@ -70,7 +70,7 @@
                                 <?php endif; ?>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item" href="#" onclick="logoutUser()" role="button">
+                                    <a class="dropdown-item" href="javascript:void(0)" onclick="logoutUser(event)" role="button">
                                         <i class="fas fa-sign-out-alt"></i> Logout
                                     </a>
                                 </li>
