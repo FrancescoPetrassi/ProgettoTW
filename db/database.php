@@ -191,6 +191,14 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+    public function getUtenti(){
+        $query = "SELECT id_utente, nome, cognome, email, ruolo, tipo_utente, universita, attivo, data_registrazione FROM utenti ORDER BY ruolo, nome";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     // UNIVERSITÀ
     public function getUniversita(){
         $query = "SELECT id_universita, nome, paese, citta, descrizione, email_contatto FROM universita WHERE attiva = 1 ORDER BY paese, nome";
@@ -216,9 +224,32 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+    public function aggiornaUniversita($id_universita, $nome, $paese, $citta, $descrizione, $sito_web, $email, $attiva){
+        $query = "UPDATE universita SET nome = ?, paese = ?, citta = ?, descrizione = ?, sito_web = ?, email_contatto = ?, attiva = ? WHERE id_universita = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssssssii', $nome, $paese, $citta, $descrizione, $sito_web, $email, $attiva, $id_universita);
+        return $stmt->execute();
+    }
+
+    public function getCandidature(){
+        $query = "SELECT c.id_candidatura, c.data_candidatura, c.stato, c.note,
+                         u.id_utente, u.nome as nome_utente, u.cognome as cognome_utente, u.email as email_utente, u.tipo_utente,
+                         m.id_mobilita, m.titolo as mobilita_titolo,
+                         uni.id_universita, uni.nome as universita_nome
+                  FROM candidature c
+                  JOIN utenti u ON c.id_utente = u.id_utente
+                  JOIN mobilita m ON c.id_mobilita = m.id_mobilita
+                  JOIN universita uni ON m.id_universita_destinazione = uni.id_universita
+                  ORDER BY c.data_candidatura DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     // MOBILITÀ
     public function getMobilita(){
-        $query = "SELECT m.id_mobilita, m.titolo, m.descrizione, m.tipo_mobilita, m.durata_mesi, m.data_inizio, m.data_fine, m.posti_disponibili, m.posti_prenotati, 
+        $query = "SELECT m.id_mobilita, m.titolo, m.descrizione, m.tipo_mobilita, m.durata_mesi, m.data_inizio, m.data_fine, m.posti_disponibili, m.posti_prenotati, m.attiva, 
                          u.id_universita, u.nome as universita_nome, u.paese, u.citta 
                   FROM mobilita m 
                   JOIN universita u ON m.id_universita_destinazione = u.id_universita 
