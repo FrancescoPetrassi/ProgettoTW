@@ -460,6 +460,8 @@ footer p {
 }
 
 
+/* Consultando  siti online, che cito nelle fonti, ho trovato queste impostazioni  */
+
 /*  HIGH CONTRAST MODE  */
 @media (prefers-contrast: more) {
     :root {
