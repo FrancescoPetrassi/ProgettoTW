@@ -359,7 +359,7 @@ footer p {
     text-align: center;
 }
 
-/* ===== BREADCRUMB ===== */
+/*   BREADCRUMB  */
 .breadcrumb {
     background-color: transparent;
     padding: 0.5rem 0;
@@ -378,7 +378,7 @@ footer p {
     text-decoration: underline;
 }
 
-/* ===== TABELLE ===== */
+/*    TABELLE   */
 .table {
     background-color: #262b3d;
     border-radius: 0.375rem;
@@ -399,7 +399,7 @@ footer p {
     background-color: #303848;
 }
 
-/* ===== TAG/BADGE ===== */
+/*   TAG/BADGE    */
 .badge {
     padding: 0.4rem 0.8rem;
     font-weight: 600;
@@ -434,7 +434,7 @@ footer p {
     color: var(--text-secondary);
 }
 
-/* ===== PRINT STYLES ===== */
+/*   PRINT STYLES   */
 @media print {
     .navbar,
     .btn,
@@ -459,7 +459,8 @@ footer p {
     }
 }
 
-/* ===== HIGH CONTRAST MODE ===== */
+
+/*  HIGH CONTRAST MODE  */
 @media (prefers-contrast: more) {
     :root {
         --primary-color: #002d5c;
@@ -477,7 +478,7 @@ footer p {
     }
 }
 
-/* ===== REDUCED MOTION ===== */
+/*  REDUCED MOTION  */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
