@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('loginForm');
     const registrationForm = document.getElementById('registrationForm');
 
+
     // Gestione form Login
     if (loginForm) {
         loginForm.addEventListener('submit', function (e) {
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+
     // Gestione form Registrazione
     if (registrationForm) {
         registrationForm.addEventListener('submit', function (e) {
@@ -68,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const submitButton = registrationForm.querySelector('button[type="submit"]');
                 setButtonLoading(submitButton, true, 'Registrazione in corso...');
+
 
                 fetch('api-login-erasmus.php', {
                     method: 'POST',
@@ -150,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    
     // Gestione Tab switching
     const authTabs = document.querySelectorAll('#authTabs button');
     authTabs.forEach(tab => {
