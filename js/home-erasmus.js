@@ -19,6 +19,7 @@ function loadFeaturedMobility() {
         });
 }
 
+
 /**
  * Visualizza le mobilità nel container
  * @param {Array} mobilita - Array di oggetti mobilità
@@ -38,6 +39,7 @@ function displayMobility(mobilita) {
             </div>
         `;
         return;
+
     }
 
     let html = '';
@@ -116,6 +118,7 @@ function displayMobility(mobilita) {
  * Visualizza messaggio di errore
  */
 function displayMobilityError() {
+
     const container = document.getElementById('mobilityContainer');
     if (!container) return;
 
@@ -135,6 +138,7 @@ function displayMobilityError() {
  * @returns {string} Classe Bootstrap per il colore
  */
 function getProgressColor(percentuale) {
+
     if (percentuale < 30) return 'success';
     if (percentuale < 70) return 'warning';
     return 'danger';
@@ -152,6 +156,7 @@ function getTipoBadge(tipo) {
         'entrambi': '<span class="badge bg-success"><i class="fas fa-users"></i> Per Tutti</span>'
     };
     return badges[tipo] || '';
+    
 }
 
 /**
