@@ -287,14 +287,18 @@ footer p {
     }
 }
 
-/* Small devices (landscape phones, 576px and up) */
+
+
+/* Visto che ci metto poco faccio la divisione per diversi schermi, ho fatto il sito in modalità mobile first, ma visto che non ci metto molto a mettere le impostazioni per schermi di diversa grandezza, e visto che in esami vecchi i programmi sono stati testati su tipi di schermi diversi, grandi e piccoli, nuovi e vecchi, voglio essere preparato. Premetto però che non sono sicuro di esser riuscito a testare tutti i casi. */
+
+/* Dispositivi piu piccoli (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     .d-none-xs {
         display: none;
     }
 }
 
-/* Medium devices (tablets, 768px and up) */
+/* Dispositivi medi  (tablets, 768px and up) */
 @media (min-width: 768px) {
     #main-content {
         padding: 3rem 0;
@@ -305,7 +309,7 @@ footer p {
     }
 }
 
-/* Large devices (desktops, 992px and up) */
+/* Schermi grandi (desktops, 992px and up) */
 @media (min-width: 992px) {
     body {
         font-size: 16px;
@@ -316,14 +320,17 @@ footer p {
     }
 }
 
-/* Extra large devices (large desktops, 1200px and up) */
+/* Schermi tanto graandi (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
     body {
         font-size: 16px;
     }
 }
 
-/* ===== UTILITY CLASSES ===== */
+
+
+
+/* UTILITY VARIE */
 .text-muted-custom {
     color: var(--text-secondary) !important;
     font-size: 0.9rem;
