@@ -13,3 +13,4 @@ Di seguito sono riportate tutte le principali fonti utilizzata nella realizzazio
 
   Lezioni/Laboratori del corso di Tecnologia Web Anno Accademico 2025/2026
   www.w3schools.com
+  https://fontawesome.com/icons Usato per le icone
