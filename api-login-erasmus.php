@@ -7,6 +7,9 @@ $result = array(
     "tipo" => "login" // Per distinguere login da registrazione
 );
 
+
+
+
 // LOGIN
 if(isset($_POST["action"]) && $_POST["action"] === "login"){
     if(!isset($_POST["email"]) || !isset($_POST["password"])){
@@ -29,6 +32,10 @@ if(isset($_POST["action"]) && $_POST["action"] === "login"){
         }
     }
 }
+
+
+
+
 
 // REGISTRAZIONE
 if(isset($_POST["action"]) && $_POST["action"] === "registrazione"){
@@ -60,6 +67,9 @@ if(isset($_POST["action"]) && $_POST["action"] === "registrazione"){
         }
     }
 }
+
+
+
 
 // LOGOUT
 if(isset($_POST["action"]) && $_POST["action"] === "logout"){
