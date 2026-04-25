@@ -83,11 +83,13 @@ function validateEmail($email){
 }
 
 function hashPassword($password){
-    return password_hash($password, PASSWORD_DEFAULT);
+    // Password in chiaro per ambiente di prova
+    return $password;
 }
 
 function verifyPassword($password, $hash){
-    return password_verify($password, $hash);
+    // Confronto diretto per ambiente di prova
+    return $password === $hash;
 }
 
 function getEmptyArticle(){
