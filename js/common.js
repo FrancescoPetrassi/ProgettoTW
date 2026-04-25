@@ -7,6 +7,7 @@
  * @param {number} duration - Durata in ms prima di nascondere (0 = non si nasconde)
  */
 function showAlert(message, type = 'info', duration = 5000) {
+
     const alertContainer = document.getElementById('alertContainer');
     if (!alertContainer) return;
 
@@ -17,6 +18,8 @@ function showAlert(message, type = 'info', duration = 5000) {
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi"></button>
         </div>
     `;
+
+
 
     alertContainer.insertAdjacentHTML('beforeend', alertHTML);
 
@@ -29,11 +32,10 @@ function showAlert(message, type = 'info', duration = 5000) {
             }
         }, duration);
     }
+
 }
 
-/**
- * Effettua il logout dell'utente
- */
+/* logout*/
 function logoutUser(event) {
     if (event && typeof event.preventDefault === 'function') {
         event.preventDefault();
@@ -58,6 +60,7 @@ function logoutUser(event) {
         console.error('Errore nel logout:', error);
         showAlert('Errore durante il logout', 'danger');
     });
+
 }
 
 /**
@@ -69,6 +72,7 @@ function formatDateIT(date) {
     if (typeof date === 'string') {
         date = new Date(date);
     }
+
     
     return new Intl.DateTimeFormat('it-IT', {
         year: 'numeric',
@@ -86,6 +90,9 @@ function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
+
+
+
 
 /**
  * Valida forza della password
@@ -122,6 +129,9 @@ function validatePasswordStrength(password) {
     return { strength, text };
 }
 
+
+
+
 /**
  * Aggiorna la visualizzazione della forza della password
  * @param {string} password - Password da valutare
@@ -145,6 +155,7 @@ function updatePasswordStrength(password, barId = 'strengthBar', textId = 'stren
         else if (strength >= 3) bar.classList.add('bg-success');
     }
 
+
     if (textEl) {
         textEl.textContent = text;
         textEl.className = 'text-muted';
@@ -154,6 +165,7 @@ function updatePasswordStrength(password, barId = 'strengthBar', textId = 'stren
         else textEl.className = 'text-danger';
     }
 }
+
 
 /**
  * Abilita/Disabilita visualizzazione password
@@ -173,6 +185,7 @@ function setupPasswordToggle(inputId, buttonId) {
         button.innerHTML = isPassword ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
         button.setAttribute('aria-label', isPassword ? 'Nascondi password' : 'Mostra password');
     });
+
 }
 
 /**
@@ -197,6 +210,7 @@ function setupFormValidation() {
  * @param {object} options - Opzioni fetch
  * @returns {Promise}
  */
+
 async function fetchAPI(url, options = {}) {
     try {
         const response = await fetch(url, {
@@ -218,6 +232,7 @@ async function fetchAPI(url, options = {}) {
     }
 }
 
+
 /**
  * Disabilita un bottone durante una richiesta
  * @param {HTMLElement} button - Elemento bottone
@@ -235,9 +250,7 @@ function setButtonLoading(button, disable = true, loadingText = 'Caricamento...'
     }
 }
 
-/**
- * Inizializza gli eventi comuni
- */
+/*  Inizializza gli eventi comuni  */
 document.addEventListener('DOMContentLoaded', function () {
     // Setup password toggle
     setupPasswordToggle('password', 'togglePassword');
@@ -255,7 +268,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Esporta per moduli (se usato con import)
+
+
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         showAlert,
