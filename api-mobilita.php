@@ -7,6 +7,8 @@ $result = array(
     "errore" => ""
 );
 
+
+
 // GET - Recupera mobilità
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $action = isset($_GET['action']) ? sanitizeInput($_GET['action']) : '';
@@ -24,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
     }
 
-    // Recupera tutte le mobilità (per l'archivio)
+    
     else if ($action === 'getAll') {
         try {
             $result["mobilita"] = $dbh->getMobilita();
@@ -34,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
     }
 
-    // Recupera mobilità per tipo (studente, professore)
     else if ($action === 'getByTipo') {
         $tipo = isset($_GET['tipo']) ? sanitizeInput($_GET['tipo']) : '';
         if (!$tipo) {
@@ -49,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
     }
 
-    // Recupera dettagli di una singola mobilità
     else if ($action === 'getById') {
         $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         if (!$id) {
@@ -68,18 +68,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
         }
     }
+    
 
-    // GET con filtri - Ricerca filtrata
+
+
     else if (isset($_GET['action']) && $_GET['action'] === 'search') {
         try {
             $mobilita = $dbh->getMobilita();
             $filtered = array();
 
-            // Applica filtri lato server come backup
+            
             foreach ($mobilita as $m) {
+
                 $include = true;
 
-                // Filtro ricerca testuale
                 if (isset($_GET['search']) && !empty($_GET['search'])) {
                     $search = strtolower(sanitizeInput($_GET['search']));
                     $text = strtolower($m['titolo'] . ' ' . $m['descrizione'] . ' ' . $m['universita_nome'] . ' ' . $m['paese']);
@@ -88,7 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     }
                 }
 
-                // Filtro tipo
+                
+
+
                 if (isset($_GET['tipo']) && !empty($_GET['tipo']) && $_GET['tipo'] !== 'tutti') {
                     $tipo = sanitizeInput($_GET['tipo']);
                     if ($tipo !== 'entrambi' && $m['tipo_mobilita'] !== $tipo && $m['tipo_mobilita'] !== 'entrambi') {
@@ -96,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     }
                 }
 
-                // Filtro paese
                 if (isset($_GET['paese']) && !empty($_GET['paese'])) {
                     $paese = sanitizeInput($_GET['paese']);
                     if ($m['paese'] !== $paese) {
@@ -104,7 +107,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     }
                 }
 
-                // Altri filtri possono essere aggiunti qui...
+                
+
 
                 if ($include) {
                     $filtered[] = $m;
@@ -119,9 +123,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
+
+
+
+
+
 // POST - Crea, aggiorna, elimina mobilità
 else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Verifica che l'utente sia admin
+    
+
     if (!isAdmin()) {
         $result["errore"] = "Non autorizzato";
         http_response_code(403);
@@ -132,7 +142,8 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $action = isset($_POST['action']) ? sanitizeInput($_POST['action']) : '';
 
-    // Crea nuova mobilità
+    
+
     if ($action === 'create') {
         $required = array('titolo', 'descrizione', 'id_universita', 'tipo', 'durata', 'data_inizio', 'data_fine', 'posti');
         foreach ($required as $field) {
@@ -142,6 +153,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
             }
         }
+
 
         if (empty($result["errore"])) {
             $titolo = sanitizeInput($_POST['titolo']);
@@ -167,8 +179,10 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+    
 
-    // Aggiorna mobilità
+
+
     else if ($action === 'update') {
         $required = array('id', 'titolo', 'descrizione', 'posti', 'data_inizio', 'data_fine', 'attiva');
         foreach ($required as $field) {
@@ -201,7 +215,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Candidatura a una mobilità
+    
     else if ($action === 'candidatura') {
         if (!isUserLoggedInErasmus()) {
             $result["errore"] = "Devi essere loggato per candidarti";
@@ -231,3 +245,5 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($result);
 ?>
+
+
