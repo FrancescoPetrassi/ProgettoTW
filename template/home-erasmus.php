@@ -297,7 +297,7 @@
     }
 
     .bg-gradient {
-        background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
+        background: #1976d2;
     }
 
     @media (max-width: 768px) {
