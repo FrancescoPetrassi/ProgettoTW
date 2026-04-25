@@ -261,6 +261,18 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getMobilitaTutte(){
+        $query = "SELECT m.id_mobilita, m.titolo, m.descrizione, m.tipo_mobilita, m.durata_mesi, m.data_inizio, m.data_fine, m.posti_disponibili, m.posti_prenotati, m.attiva, 
+                         u.id_universita, u.nome as universita_nome, u.paese, u.citta 
+                  FROM mobilita m 
+                  JOIN universita u ON m.id_universita_destinazione = u.id_universita 
+                  ORDER BY m.data_inizio DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getMobilitaById($id_mobilita){
         $query = "SELECT m.*, u.nome as universita_nome, u.paese, u.citta, u.email_contatto 
                   FROM mobilita m 

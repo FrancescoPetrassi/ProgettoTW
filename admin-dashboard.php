@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$mobilita = $dbh->getMobilita();
+$mobilita = $dbh->getMobilitaTutte();
 $universita = $dbh->getUniversita();
 $utenti = $dbh->getUtenti();
 $candidature = $dbh->getCandidature();

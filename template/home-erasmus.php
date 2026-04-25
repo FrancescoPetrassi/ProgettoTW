@@ -56,7 +56,7 @@
                 <div class="card h-100 border-0 text-center">
                     <div class="card-body">
                         <div class="display-4 text-success mb-3">
-                            <i class="fas fa-backpack"></i>
+                            <i class="fa-solid fa-graduation-cap"></i>
                         </div>
                         <h3 class="card-title">Opportunità Formative</h3>
                         <p class="card-text text-muted">
