@@ -30,6 +30,7 @@ if (isUserLoggedInErasmus()) {
     }
 }
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isUserLoggedInErasmus()) {
         $messaggio = 'Devi essere loggato per candidarti a una mobilità.';

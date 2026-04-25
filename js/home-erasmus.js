@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadFeaturedMobility();
 });
 
-/**
- * Carica le mobilità in evidenza
- */
+/*  Carica le mobilità in evidenza    */
 function loadFeaturedMobility() {
     fetch('api-mobilita.php?action=getRecenti&limit=3')
         .then(response => response.json())
@@ -114,9 +112,7 @@ function displayMobility(mobilita) {
     container.innerHTML = html;
 }
 
-/**
- * Visualizza messaggio di errore
- */
+/*  Visualizza messaggio di error   */
 function displayMobilityError() {
 
     const container = document.getElementById('mobilityContainer');
