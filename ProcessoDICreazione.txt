@@ -6,3 +6,5 @@ Il progetto nasce dalla difficoltà riscontrata da me e da miei conoscenti, nel 
 Tale idea è stata sviluppata maggiormente nell'anno passato a seguito del mio tirocinio curricolare:
   Avendo usato ampiamento HTML, CSS, PHP, Javascript ed altri programmi, ho pensato seriamente di realizzare il progetto, ma non ho mai realizzato nulla,
   anche se l'idea era sempre piu concreta.
+  
+Avendo quindi l'occasione, ho deciso di tirare fuori i miei appunti e creare il progetto che ho realizzato.
