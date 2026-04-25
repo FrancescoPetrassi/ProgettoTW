@@ -1,3 +1,8 @@
 PROCESSO DI CREAZIONE DEL PROGETTO:
 
 In questo testo cercherò di spiegare quale sia stato il processo di creazione e le fasi generali del progetto.
+
+Il progetto nasce dalla difficoltà riscontrata da me e da miei conoscenti, nel partecipare al programma di erasmus univeritario.
+Tale idea è stata sviluppata maggiormente nell'anno passato a seguito del mio tirocinio curricolare:
+  Avendo usato ampiamento HTML, CSS, PHP, Javascript ed altri programmi, ho pensato seriamente di realizzare il progetto, ma non ho mai realizzato nulla,
+  anche se l'idea era sempre piu concreta.
