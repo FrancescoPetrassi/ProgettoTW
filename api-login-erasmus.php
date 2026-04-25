@@ -48,7 +48,8 @@ if(isset($_POST["action"]) && $_POST["action"] === "registrazione"){
         } else if(strlen($password) < 8){
             $result["errore"] = "La password deve avere almeno 8 caratteri";
         } else {
-            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            // Password in chiaro per ambiente di prova
+            $password_hash = $password;
             
             if($dbh->registraUtenteErasmus($nome, $cognome, $email, $password_hash, $tipo_utente)){
                 $result["logineseguito"] = true;
