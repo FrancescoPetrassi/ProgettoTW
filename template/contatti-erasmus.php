@@ -28,7 +28,9 @@
                             </td>
                             <td>
                                 <?php if(!empty($uni["sito_web"])): ?>
-                                    <a href="<?php echo htmlspecialchars($uni["sito_web"]); ?>" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <?php $sito = htmlspecialchars($uni["sito_web"]); ?>
+                                    <?php $sito = strpos($sito, 'http') === 0 ? $sito : 'https://' . $sito; ?>
+                                    <a href="<?php echo $sito; ?>" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
                                         <i class="fas fa-external-link-alt me-1"></i>Visita
                                     </a>
                                 <?php else: ?>
