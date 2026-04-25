@@ -7,22 +7,19 @@ let allMobility = [];
 let filteredMobility = [];
 let currentFilters = {};
 
+
 document.addEventListener('DOMContentLoaded', function () {
     initializeArchive();
 });
 
-/**
- * Inizializza la pagina archivio
- */
+/* Inizializza l'archivio */
 function initializeArchive() {
     loadMobilityData();
     setupEventListeners();
     setupViewToggle();
 }
 
-/**
- * Carica i dati delle mobilità dal server
- */
+/* Carica i dati delle mobilità dal server */
 function loadMobilityData() {
     showLoadingState();
 
@@ -43,9 +40,8 @@ function loadMobilityData() {
         });
 }
 
-/**
- * Popola il filtro paesi con i paesi disponibili
- */
+
+/* Popola il filtro paesi con i paesi disponibili */
 function populateCountryFilter() {
     const paesi = [...new Set(allMobility.map(m => m.paese).filter(p => p))].sort();
     const paeseSelect = document.getElementById('paese');
@@ -58,16 +54,15 @@ function populateCountryFilter() {
     });
 }
 
-/**
- * Imposta gli event listener per i controlli
- */
+/* Imposta gli event listener per i controlli*/
 function setupEventListeners() {
-    // Filtri
+    
     document.getElementById('applyFilters').addEventListener('click', applyFilters);
     document.getElementById('resetFilters').addEventListener('click', resetFilters);
     document.getElementById('clearFiltersBtn').addEventListener('click', resetFilters);
 
-    // Ricerca in tempo reale (con debounce)
+    
+    
     const searchInput = document.getElementById('searchText');
     let searchTimeout;
     searchInput.addEventListener('input', function () {
@@ -75,20 +70,17 @@ function setupEventListeners() {
         searchTimeout = setTimeout(applyFilters, 300);
     });
 
-    // Filtri select (applica automaticamente)
     ['tipoMobilita', 'paese', 'durata', 'ordinamento'].forEach(id => {
         document.getElementById(id).addEventListener('change', applyFilters);
     });
 
-    // Filtri avanzati
+    
     ['dataInizio', 'dataFine', 'postiDisponibili'].forEach(id => {
         document.getElementById(id).addEventListener('change', applyFilters);
     });
 }
 
-/**
- * Imposta il toggle vista griglia/lista
- */
+
 function setupViewToggle() {
     document.getElementById('viewGrid').addEventListener('click', () => setView('grid'));
     document.getElementById('viewList').addEventListener('click', () => setView('list'));
@@ -101,26 +93,22 @@ function setupViewToggle() {
 function setView(view) {
     currentView = view;
 
-    // Aggiorna pulsanti
+    
     document.getElementById('viewGrid').classList.toggle('active', view === 'grid');
     document.getElementById('viewList').classList.toggle('active', view === 'list');
 
-    // Salva preferenza nel localStorage
     localStorage.setItem('mobilityView', view);
 
-    // Ridisegna risultati
     displayResults(filteredMobility);
 }
 
-/**
- * Applica i filtri ai dati
- */
+/*  Applica i filtri ai dati */
 function applyFilters() {
     const filters = getCurrentFilters();
     currentFilters = filters;
 
     filteredMobility = allMobility.filter(mobility => {
-        // Filtro ricerca testuale
+        
         if (filters.search) {
             const searchTerm = filters.search.toLowerCase();
             const searchableText = `${mobility.titolo} ${mobility.descrizione} ${mobility.universita_nome} ${mobility.paese}`.toLowerCase();
@@ -129,21 +117,21 @@ function applyFilters() {
             }
         }
 
-        // Filtro tipo mobilità
+        
         if (filters.tipo && filters.tipo !== '') {
             if (filters.tipo !== 'entrambi' && mobility.tipo_mobilita !== filters.tipo && mobility.tipo_mobilita !== 'entrambi') {
                 return false;
             }
         }
 
-        // Filtro paese
+        
         if (filters.paese && filters.paese !== '') {
             if (mobility.paese !== filters.paese) {
                 return false;
             }
         }
 
-        // Filtro durata
+        
         if (filters.durata && filters.durata !== '') {
             const mesi = mobility.durata_mesi;
             switch (filters.durata) {
@@ -159,7 +147,6 @@ function applyFilters() {
             }
         }
 
-        // Filtro data inizio
         if (filters.data_inizio) {
             const dataInizioMob = new Date(mobility.data_inizio);
             const dataFiltro = new Date(filters.data_inizio);
@@ -168,7 +155,6 @@ function applyFilters() {
             }
         }
 
-        // Filtro data fine
         if (filters.data_fine) {
             const dataFineMob = new Date(mobility.data_fine);
             const dataFiltro = new Date(filters.data_fine);
@@ -177,8 +163,9 @@ function applyFilters() {
             }
         }
 
-        // Filtro posti disponibili
+        
         if (filters.posti && filters.posti !== '') {
+
             const postiLiberi = mobility.posti_disponibili - mobility.posti_prenotati;
             switch (filters.posti) {
                 case '1-5':
@@ -206,6 +193,8 @@ function applyFilters() {
     displayResults(filteredMobility);
 }
 
+
+
 /**
  * Ottiene i filtri correnti dal form
  * @returns {object} Oggetto con i filtri
@@ -223,6 +212,7 @@ function getCurrentFilters() {
     };
 }
 
+
 /**
  * Ordina le mobilità
  * @param {Array} mobility - Array di mobilità da ordinare
@@ -230,6 +220,7 @@ function getCurrentFilters() {
  */
 function sortMobility(mobility, orderBy) {
     mobility.sort((a, b) => {
+
         let aVal, bVal;
 
         switch (orderBy) {
@@ -254,22 +245,27 @@ function sortMobility(mobility, orderBy) {
                 aVal = new Date(a.data_inizio);
                 bVal = new Date(b.data_inizio);
                 break;
+
         }
 
         if (aVal < bVal) return -1;
         if (aVal > bVal) return 1;
         return 0;
+
     });
 }
 
-/**
- * Azzera tutti i filtri
- */
+
+
+/*Azzera tutti i filtri */
 function resetFilters() {
     document.getElementById('filterForm').reset();
     document.getElementById('searchText').value = '';
     applyFilters();
 }
+
+
+
 
 /**
  * Visualizza i risultati filtrati
@@ -281,7 +277,8 @@ function displayResults(mobility) {
     const noResults = document.getElementById('noResultsMessage');
     const pagination = document.getElementById('paginationNav');
 
-    // Aggiorna contatore risultati
+   
+    
     document.getElementById('totalResults').textContent = mobility.length;
 
     if (mobility.length === 0) {
@@ -292,24 +289,24 @@ function displayResults(mobility) {
         return;
     }
 
-    // Mostra risultati e nascondi messaggio "nessun risultato"
     noResults.classList.add('d-none');
     resultsInfo.classList.remove('d-none');
 
-    // Paginazione
+    
+    
+
     const totalPages = Math.ceil(mobility.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const pageMobility = mobility.slice(startIndex, endIndex);
 
-    // Visualizza mobilità della pagina corrente
     container.innerHTML = '';
     pageMobility.forEach(m => {
         const mobilityElement = createMobilityElement(m);
         container.appendChild(mobilityElement);
     });
 
-    // Gestione paginazione
+    
     if (totalPages > 1) {
         pagination.classList.remove('d-none');
         renderPagination(totalPages);
@@ -317,6 +314,8 @@ function displayResults(mobility) {
         pagination.classList.add('d-none');
     }
 }
+
+
 
 /**
  * Crea elemento HTML per una mobilità
@@ -327,11 +326,10 @@ function createMobilityElement(mobility) {
     const template = document.getElementById(currentView === 'grid' ? 'mobilityCardTemplate' : 'mobilityRowTemplate');
     const clone = template.content.cloneNode(true);
 
-    // Calcoli
+    
     const postiLiberi = mobility.posti_disponibili - mobility.posti_prenotati;
     const percentualePosti = Math.round(((mobility.posti_prenotati / mobility.posti_disponibili) * 100));
 
-    // Popola dati
     clone.querySelector('.titolo').textContent = escapeHtml(mobility.titolo);
     clone.querySelector('.universita-nome').textContent = escapeHtml(mobility.universita_nome);
     clone.querySelector('.paese').textContent = escapeHtml(mobility.paese);
@@ -340,22 +338,25 @@ function createMobilityElement(mobility) {
     clone.querySelector('.data-inizio').textContent = formatDateIT(mobility.data_inizio);
     clone.querySelector('.data-fine').textContent = formatDateIT(mobility.data_fine);
 
-    // Descrizione troncata
+   
     const descrizione = mobility.descrizione || '';
     clone.querySelector('.descrizione').textContent = descrizione.length > 100 ?
         descrizione.substring(0, 100) + '...' : descrizione;
 
-    // Barra disponibilità
+        
+
     const progressBar = clone.querySelector('.disponibilita-bar');
     progressBar.style.width = percentualePosti + '%';
     progressBar.setAttribute('aria-valuenow', percentualePosti);
     progressBar.className = 'progress-bar ' + getProgressColorClass(percentualePosti);
 
-    // Badge tipo
+    
+    
+
     const tipoContainer = clone.querySelector('.tipo-badge-container');
     tipoContainer.innerHTML = getTipoBadge(mobility.tipo_mobilita);
 
-    // Event listeners
+    
     const viewDetailsBtn = clone.querySelector('.view-details-btn');
     const viewFullBtn = clone.querySelector('.view-full-btn');
 
@@ -363,13 +364,19 @@ function createMobilityElement(mobility) {
     viewFullBtn.href = `dettaglio-mobilita.php?id=${mobility.id_mobilita}`;
 
     return clone;
+
 }
+
+
+
 
 /**
  * Mostra modal con dettagli mobilità
  * @param {object} mobility - Oggetto mobilità
  */
+
 function showMobilityModal(mobility) {
+
     const modalBody = document.getElementById('mobilityModalBody');
     const modalTitle = document.getElementById('mobilityModalLabel');
     const viewFullBtn = document.getElementById('viewFullDetailsBtn');
@@ -378,6 +385,8 @@ function showMobilityModal(mobility) {
     viewFullBtn.href = `dettaglio-mobilita.php?id=${mobility.id_mobilita}`;
 
     const postiLiberi = mobility.posti_disponibili - mobility.posti_prenotati;
+
+
 
     modalBody.innerHTML = `
         <div class="row">
@@ -406,6 +415,7 @@ function showMobilityModal(mobility) {
                 </div>
             </div>
         </div>
+
     `;
 }
 
@@ -414,10 +424,12 @@ function showMobilityModal(mobility) {
  * @param {number} totalPages - Numero totale di pagine
  */
 function renderPagination(totalPages) {
+
     const paginationList = document.getElementById('paginationList');
     paginationList.innerHTML = '';
 
-    // Pulsante precedente
+    
+
     const prevLi = document.createElement('li');
     prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
     prevLi.innerHTML = `<a class="page-link" href="#" aria-label="Precedente"><span aria-hidden="true">&laquo;</span></a>`;
@@ -430,7 +442,7 @@ function renderPagination(totalPages) {
     });
     paginationList.appendChild(prevLi);
 
-    // Pagine
+    
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, currentPage + 2);
 
@@ -452,6 +464,7 @@ function renderPagination(totalPages) {
             paginationList.appendChild(li);
         }
     }
+
 
     for (let i = startPage; i <= endPage; i++) {
         const li = document.createElement('li');
@@ -484,7 +497,8 @@ function renderPagination(totalPages) {
         paginationList.appendChild(li);
     }
 
-    // Pulsante successivo
+    
+
     const nextLi = document.createElement('li');
     nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
     nextLi.innerHTML = `<a class="page-link" href="#" aria-label="Successiva"><span aria-hidden="true">&raquo;</span></a>`;
@@ -498,6 +512,7 @@ function renderPagination(totalPages) {
     paginationList.appendChild(nextLi);
 }
 
+
 /**
  * Ottiene la classe colore per la barra progresso
  * @param {number} percentuale - Percentuale 0-100
@@ -508,6 +523,7 @@ function getProgressColorClass(percentuale) {
     if (percentuale < 70) return 'bg-warning';
     return 'bg-danger';
 }
+
 
 /**
  * Genera badge per tipo mobilità
@@ -523,9 +539,9 @@ function getTipoBadge(tipo) {
     return badges[tipo] || '';
 }
 
-/**
- * Mostra stato di caricamento
- */
+
+
+
 function showLoadingState() {
     const container = document.getElementById('resultsContainer');
     container.innerHTML = `
@@ -555,6 +571,7 @@ function showErrorState(message) {
                 </button>
             </div>
         </div>
+
     `;
 }
 
@@ -568,4 +585,5 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+
 }
