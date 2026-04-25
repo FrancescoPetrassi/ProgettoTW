@@ -201,7 +201,7 @@ class DatabaseHelper{
 
     // UNIVERSITÀ
     public function getUniversita(){
-        $query = "SELECT id_universita, nome, paese, citta, descrizione, email_contatto FROM universita WHERE attiva = 1 ORDER BY paese, nome";
+        $query = "SELECT id_universita, nome, paese, citta, descrizione, email_contatto, sito_web FROM universita WHERE attiva = 1 ORDER BY paese, nome";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
