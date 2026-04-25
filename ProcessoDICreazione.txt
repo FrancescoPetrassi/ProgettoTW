@@ -17,3 +17,17 @@ La progettazione è stata divisa in 7 fasi principali:
   5) Dashboard Admin
   6) Dettaglio Mobilità e Candidatura
   7) Fase di Test e Finalizzazioni
+
+Oltre a queste fasi ci sono state aggiunte intermendie (come la pagina contatti) e sistemazione di codice scritto in fasi passate.
+
+Per la parte di codice di questo progetto sono partito dai file delle lezioni di laboratorio, che sono ancora presenti nel progetto, ma spostati in una cartella dedicata.
+
+Avendo preso come base il progetto di laboratorio, ho deciso di lasciare uno stile di progettazione simile, 4 pagine che condividevano stile e alcuni elementi.
+
+Per quanto riguarda gli utenti, ho deciso di aggiungere due tipi di profilo utente (oltre a quello da admin),
+perchè nell'idea originale del progetto ho voluto tenere in considerazione anche l'erasmus per professori che sarebbe dovuto essere più complesso.
+In un secondo momento ho deciso di rendere i due profili utenti più simili, ma con progetti adeguati al profilo.
+
+Piccolo appunto su le password degli account.
+Originariamente le password non dovevano essere in chiaro, ma codificate in hash (si possono trovare ancora delle linee di codice a riguardo).
+Ma seguendo l'esempio dei laboratori, anche per visualizzarle meglio dal database, ho deciso di tenerle in chiaro.
