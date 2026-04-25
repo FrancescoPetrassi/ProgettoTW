@@ -6,5 +6,14 @@ Il progetto nasce dalla difficoltà riscontrata da me e da miei conoscenti, nel 
 Tale idea è stata sviluppata maggiormente nell'anno passato a seguito del mio tirocinio curricolare:
   Avendo usato ampiamento HTML, CSS, PHP, Javascript ed altri programmi, ho pensato seriamente di realizzare il progetto, ma non ho mai realizzato nulla,
   anche se l'idea era sempre piu concreta.
-  
+
 Avendo quindi l'occasione, ho deciso di tirare fuori i miei appunti e creare il progetto che ho realizzato.
+
+La progettazione è stata divisa in 7 fasi principali:
+  1) Fase di Analisi e Pianificazione
+  2) Creazione di Database e Modelli
+  3) Homepage, Login e Archivio
+  4) Dashboard Utente (studente e professore)
+  5) Dashboard Admin
+  6) Dettaglio Mobilità e Candidatura
+  7) Fase di Test e Finalizzazioni
