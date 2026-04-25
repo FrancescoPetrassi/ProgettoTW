@@ -18,6 +18,7 @@ function loadFeaturedMobility() {
 }
 
 
+
 /**
  * Visualizza le mobilità nel container
  * @param {Array} mobilita - Array di oggetti mobilità

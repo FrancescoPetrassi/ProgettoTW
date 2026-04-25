@@ -250,6 +250,7 @@ function setButtonLoading(button, disable = true, loadingText = 'Caricamento...'
     }
 }
 
+
 /*  Inizializza gli eventi comuni  */
 document.addEventListener('DOMContentLoaded', function () {
     // Setup password toggle

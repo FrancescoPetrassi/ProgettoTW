@@ -5,12 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const registrationForm = document.getElementById('registrationForm');
 
 
-    // Gestione form Login
+    
     if (loginForm) {
         loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Validazione client-side
+            
+
             if (!loginForm.checkValidity() === false) {
                 const formData = new FormData(loginForm);
                 formData.append('action', 'login');
@@ -44,21 +45,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // Gestione form Registrazione
+    
+
     if (registrationForm) {
         registrationForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Validazione client-side
+            
             if (!registrationForm.checkValidity() === false) {
-                // Validazione email
+                
                 const email = document.getElementById('emailReg').value;
                 if (!validateEmail(email)) {
                     showAlert('Email non valida', 'danger');
                     return;
                 }
 
-                // Validazione password
+                
+
                 const password = document.getElementById('passwordReg').value;
                 if (password.length < 8) {
                     showAlert('La password deve avere almeno 8 caratteri', 'danger');
@@ -110,8 +113,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
             }
         });
+        
 
-        // Validazione Real-Time email
+
         const emailInput = document.getElementById('emailReg');
         if (emailInput) {
             emailInput.addEventListener('blur', function () {
@@ -125,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        // Validazione Real-Time password
+        
         const passwordInput = document.getElementById('passwordReg');
         if (passwordInput) {
             passwordInput.addEventListener('input', function () {
@@ -141,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        // Validazione Real-Time selezionamento ruolo
         const tipoUtenteSelect = document.getElementById('tipoUtente');
         if (tipoUtenteSelect) {
             tipoUtenteSelect.addEventListener('change', function () {
@@ -154,7 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     
-    // Gestione Tab switching
+    
+
     const authTabs = document.querySelectorAll('#authTabs button');
     authTabs.forEach(tab => {
         tab.addEventListener('shown.bs.tab', function (e) {
