@@ -6,6 +6,7 @@ redirectIfNotAdmin();
 $messaggio = '';
 $messaggioTipo = 'success';
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = isset($_POST['action']) ? sanitizeInput($_POST['action']) : '';
 
@@ -20,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $posti = isset($_POST['posti']) ? (int)$_POST['posti'] : 0;
         $requisiti = sanitizeInput($_POST['requisiti'] ?? '');
         $lingue = sanitizeInput($_POST['lingue'] ?? '');
+
 
         if (empty($titolo) || empty($descrizione) || $id_universita === 0 || empty($tipo) || $durata <= 0 || empty($data_inizio) || empty($data_fine) || $posti <= 0) {
             $messaggio = 'Compila tutti i campi obbligatori per creare una mobilità.';
