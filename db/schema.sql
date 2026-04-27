@@ -70,10 +70,10 @@ VALUES ('Admin', 'Sistema', 'admin@erasmus.it', MD5('admin123'), 'admin', TRUE);
 -- Università Partner (esempi)
 INSERT INTO universita (nome, paese, citta, descrizione, sito_web, email_contatto, attiva) 
 VALUES 
-('Universidad de Barcelona', 'Spagna', 'Barcellona', 'Università leader in Catalogna', 'www.ub.edu', 'mobility@ub.edu', TRUE),
-('Universität Berlin', 'Germania', 'Berlino', 'Università storica di Berlino', 'www.hu-berlin.de', 'erasmus@hu-berlin.de', TRUE),
-('Université de Lyon', 'Francia', 'Lione', 'Università principale della regione Rodano-Alpi', 'www.univ-lyon.fr', 'international@univ-lyon.fr', TRUE),
-('Universidade de Lisboa', 'Portogallo', 'Lisbona', 'Università prestigiosa portoghese', 'www.ulisboa.pt', 'erasmus@ulisboa.pt', TRUE);
+('Universidad de Barcelona', 'Spagna', 'Barcellona', 'Universita leader in Catalogna', 'www.ub.edu', 'mobility@ub.edu', TRUE),
+('Universitat Berlin', 'Germania', 'Berlino', 'Universita storica di Berlino', 'www.hu-berlin.de', 'erasmus@hu-berlin.de', TRUE),
+('Universite de Lyon', 'Francia', 'Lione', 'Universita principale della regione Rodano-Alpi', 'www.univ-lyon.fr', 'international@univ-lyon.fr', TRUE),
+('Universidade de Lisboa', 'Portogallo', 'Lisbona', 'Universita prestigiosa portoghese', 'www.ulisboa.pt', 'erasmus@ulisboa.pt', TRUE);
 
 -- Opportunità di Mobilità (esempi)
 INSERT INTO mobilita (titolo, descrizione, id_universita_destinazione, tipo_mobilita, durata_mesi, data_inizio, data_fine, posti_disponibili, requisiti, lingue_richieste, attiva)
